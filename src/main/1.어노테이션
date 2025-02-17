@@ -40,3 +40,43 @@
     }catch (Exception e){
        System.out.println(e);
     }
+
+
+[SpringBootApplication 어노테이션]
+1. AppStart 클래스에서 @SpringBootApplication 어노테이션을 사용하여 SpringBoot 적용
+    <SpringBootApplication 의 주요 어노테이션>
+    1) @SpringBootConfiguration
+        -> Spring 컨테이너(메모리) 에 bean(객체) 설정을 등록 => 제어의 역전
+    2) @EnableAutoConfiguration
+        -> Spring Boot 가 자동으로 필요한 bean(객체) 를 설정
+        -> 웹 서버인 내장(Tomcat) 을 설정
+    3) @ComponentScan
+        -> 현재 클래스 기준으로 동일한 패키지 및 하위 패키지를 자동으로 스캔
+        ★ 스캔 대상
+            - @Component
+            - @Controller
+            - @RestController
+            - @Service
+            - @Repository
+            - @Mapper
+2. AppStart main 메소드 내에서 SpringApplication.run(현재클래스명.class)
+    <기능>
+    -> Spring 컨테이너(메모리) 초기화
+    -> 자동 설정 적용
+    -> 내장형 웹서버(Tomcat) 실행
+3. Controller 로 사용할 클래스 위에 @Controller 어노테이션을 통해 해당 클래스가 Controller 임을 명시 , 기능 주입
+    -> 해당 클래스는 Spring 컨테이너(메모리) bean(객체) 등록
+    -> Spring Controller 는 기본적을 HTTP Servlet 을 지원하기 때문에 별도의 상속이 불필요
+
+4. Controller 클래스의 main 함수 내 @RequestMapping 어노테이션을 통해 매핑
+    방법_1)
+        @RequestMapping(value= " HTTP 주소 " , method = RequestMethod.HTTP 메소드)
+                                                                    -> GET
+                                                                    -> POST
+                                                                    -> PUT
+                                                                    -> DELETE
+    방법_2)
+        @GetMapping("HTTP 주소")
+        @PostMapping("HTTP 주소")
+        @PutMapping("HTTP 주소")
+        @DeleteMapping("HTTP 주소")
