@@ -1,0 +1,12 @@
+[인텔리제이 기본 설정]
+1. 상단메뉴 -> [file] -> [setting] -> 인텔리제이 테마 / 확대 , 축소 / 폰트 등 설정
+2. ★ 필수 ★ 상단메뉴 -> [file] -> [setting] -> [file encoding]  -> 전역 인코딩 : UTP-8
+                                                               -> 프로젝트 인코딩 : UTF-8
+                                                               -> 프로퍼티 인코딩 : UTF-8
+3. ★ 필수 ★ 상단메뉴 -> [file] -> [setting] -> [plugins] -> lombok 필수 / tabnine 선택
+
+
+[프로젝트 git 연동]
+1. 상단 메뉴 -> [VCS(Version Control System)] -> [Share Project On GitHub]
+    -> ★ 최초연결일시 ★ [계정추가] -> [login github] -> 웹에서 인증하기
+    -> ★ 직접인증시 -> [file] -> [setting] -> [버전관리] -> [+]계정 추가 / [-]계정 삭제
