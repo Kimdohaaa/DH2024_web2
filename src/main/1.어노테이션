@@ -42,7 +42,9 @@
     }
 
 
-[SpringBootApplication 어노테이션]
+[SpringBootApplication 어노테이션 적용]
+
+<매핑>
 1. AppStart 클래스에서 @SpringBootApplication 어노테이션을 사용하여 SpringBoot 적용
     <SpringBootApplication 의 주요 어노테이션>
     1) @SpringBootConfiguration
@@ -80,3 +82,18 @@
         @PostMapping("HTTP 주소")
         @PutMapping("HTTP 주소")
         @DeleteMapping("HTTP 주소")
+
+<어노테이션>
+1. @ResponseBody : 자동으로 함수의 return 값을 반환 타입에 맞게 Response 함
+    -> int, Map, boolean , DTO 등등 : 자동으로 함수 return 값을 application/json 타입으로 반환
+    -> String : 자동으로 함수 return 값을 text/plain 타입으로 반환
+    => ObjectMapper 라이브러리 불필요
+
+★ @ResponseBody + @Controller => @RestController ★
+    -> 동적 페이지(화면(=HTML)) 반환 : @Controller
+        => @Controller 어노테이션 사용 시 반환 메소드 위에 @ResponseBody 어노테이션을 주입해야함
+    -> REST(값(=JSON)) 반환 : @RestController
+        => @RestController 어노테이션 사용 시 메소드 위에 @ResponseBody 어노테이션 생략가능
+
+2. @RequestMapping() : 클래스 내 메소드들의 공통 URL 정의 시 클래스 위에 선언하여 사용
+3. @XXXMapping() : ★ 메소드 전용 ★ 클래스 내 각 메소드들의 상세 URL 정의 시 해당 메소드 위에 선언하여 사용
