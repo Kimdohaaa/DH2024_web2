@@ -1,0 +1,42 @@
+[메타 어노테이션 만들기]
+1. 인터페이스로 정의한 타입
+2. 목적 : 다형성 / 유지보수 / 리플렉션(런타임 중 컴파일 -> 동적처리)
+3. 생성
+    1. 어노테이션 생성 :
+        @Retention()
+            -> 어노테이션의 생명주기(유지기간)을 설정
+            -> @RetentionPolicy(RetentionPolicy.SOURCE) : 컴파일 후 삭제
+            -> @RetentionPolicy(RetentionPolicy.CLASS) : .class 파일에 포함 , 실행 중에는 사용
+            -> @RetentionPolicy(RetentionPolicy.RUNTIME) : 실행 중 리플렉션 통해 사용
+
+        @Target()
+            -> 어노테이션을 적용할 수 있는 위치(대상) 설정
+            -> @Target(ElementType.TYPE) : 클래스,인터페이스,열거형 타입 사용
+            -> @Target(ElementType.FIELO) : 멤버변수에서 사용
+            -> @Target(ElementType.METHOD) : 메소드에서 사용
+            -> @Target(ElementType.PARAMETER) : 메소드 매개변수에서 사용
+            -> @Target(ElementType.CONSTRUCTOR) : 생성자에서 사용
+            -> @Target(ElementType.LOCAL.VARIABLE) : 지역변수에서 사용
+
+        @interface 인터페이스명 {}
+
+    2. 인터페이스 내 추상메소드 생성 : String value1();
+        ★ 추상메소드 : 구현부없이 선언부만 작성하여 선언하는 메소드
+
+    3. 선언한 어노테이션을 사용할 코드 위에 @생성한어노테이션명 으로 어노테이션 지정
+         @Annotation1( )
+         public void method(){}
+    4. 어노테이션의 () 안에 속성 값을 대입
+        @Annotation1(value1 = "value1 값 지정")
+        public void method(){}
+4. 상속과 어노테이션의 차이점
+    => 상속      : 컴파일 시
+    => 어노테이션 : 리플렉션 시 -> 동적 처리 가능
+5. 리플렉션 클래스 정보 확인
+    try{
+       Method method = 확인할 클래스명.class.getMethod("확인할 메소드");
+       어노테이션명 변수명 = method.getAnnotation(Annotation1.class);
+       System.out.println(변수명.value1());
+    }catch (Exception e){
+       System.out.println(e);
+    }
