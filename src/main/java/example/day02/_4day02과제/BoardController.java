@@ -37,6 +37,14 @@ public class BoardController {
         return result;
     }
 
+    @GetMapping("/view")
+    // 2. 게시물 출력 제어 함수
+    public BoardDto read(@RequestParam int bno ){
+        // [1] DAO에게 처리 결과를 요청하고 받는다.
+        BoardDto result = BoardDao.read(bno);
+        // [2] 처리 결과를 VIEW에게 반환한다.
+        return result;
+    }
     @PutMapping
     // 3. 게시물 수정 제어 함수
     public boolean update(@RequestBody BoardDto boardDto ) {

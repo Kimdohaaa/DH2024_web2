@@ -4,6 +4,7 @@ import example.day02._3day02과제.BoardDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,5 +71,19 @@ public class BoardDao {
         }
         return false;
     } // f end
+
+    public  BoardDto read(@RequestParam int bno){ // 요청값 쿼리스트링
+        System.out.println("BoardController.find");
+        System.out.println("bno = " + bno);
+
+        // 배열 순회를 통해 list 내에 있는 요청값과 같은 bno 찾기
+        for(BoardDto i : boards){
+            if(i.getBno() == bno){ // 만약 list 의 i 번째 bno 와 요청값 bno 가 같다면
+                return i; // i 번째 boardDto 반환
+            }
+        }
+
+        return null; // 찾지 못할 시 null 반환
+    }
 
 }
