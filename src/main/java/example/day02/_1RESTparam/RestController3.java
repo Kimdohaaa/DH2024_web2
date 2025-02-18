@@ -5,14 +5,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.lang.reflect.Member;
 import java.util.Map;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/day02")
-public class RestController {
+public class RestController3 {
 
     // [1] HTTP Servlet 내장 객체(요청/응답) : HttpServletRequest , HttpServletResponse 지원 => 기존 방식
     @GetMapping
