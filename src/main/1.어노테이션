@@ -96,4 +96,68 @@
         => @RestController 어노테이션 사용 시 메소드 위에 @ResponseBody 어노테이션 생략가능
 
 2. @RequestMapping() : 클래스 내 메소드들의 공통 URL 정의 시 클래스 위에 선언하여 사용
+
 3. @XXXMapping() : ★ 메소드 전용 ★ 클래스 내 각 메소드들의 상세 URL 정의 시 해당 메소드 위에 선언하여 사용
+
+4. @RequestParam : HTTP Request(요청) 의 URL 쿼리스트링 매개변수를 매핑하는 어노테이션(컬렉션프레임워크, 기본타입 등 공식 타입만 지원)
+    -> RequestParam(name = "쿼리스트링의 매개변수명") 타입 매개변수명
+    -> RequestParam(defaultValue = "" ) 타입 매개변수명 : 쿼리스트링에 매핑할 값이 없을 시 default 값 지정
+    -> RequestParam(required = true) 타입 매개변수명 : 쿼리스트링 매개변수 필수여부 설정 (기본값 : true)
+        => 쿼리스트링 매개변수가 존재하지 않을 시 400(bad request) 오류 응답
+    ★ 쿼리스트링의 매개변수명과 함수매개변수명이 동일하면 @RequestParam 어노테이션 생략 가능 => 관례적으로 명시 ★
+    ★ @RequestParam 의 근본 => @ModelAttribute (@ModelAttribute 는 @RequestParam 생략 시 자동 주입됨) ★
+
+    <@RequestParam vs @ModelAttribute>
+     명시해야함          생략가능(기본값)
+     공식타입만 지원      개발자가 만든 타입도 지원
+                       => DTO 등 사용 시 생략 또는 @ModelAttribute 사용
+     쿼리스트링 지원      쿼리스트링 + form 첨부파일 지원
+
+5. @RequestBody : HTTP REQUEST BODY 의 "application/json" 타입의 데이터를 자바타입으로 변환 / 매핑하는 어노테이션
+    ★ 주의점 : @RequestBody 생략 시 @ModelAttribute 가 자동 주입 되므로 반드시 명시해야함 ★
+     => @ModelAttribute 는 쿼리스트링만 지원
+
+
+[주요 어노테이션 모음 / 정리]
+=> Spring Web 에서는 REST 관련 어노테이션을 지원함
+
+1. @Controller      : HTTP 요청 처리 (주로 HTML 반환 시 사용)
+2. @RestController  : HTTP 요청 / 응답 처리 (주로 @ResponseBody 가 포함되어 JSON 응답 시 사용)
+3. @RequestMapping  : HTTP URL 매핑 (주로 공통 URL 정의 시 클래스 위에 주입하여 사용)
+4. @PostMapping     : HTTP POST 요청 매핑   (C / insert)
+5. @GetMapping      : HTTP GET 요청 매핑    (R / select)
+6. @PutMapping      : HTTP PUT 요청 매핑    (U / update)
+7. @DeleteMapping   : HTTP DELETE 요청 매핑 (D / delete)
+8. @ResponseBody    : HTTP 응답을 JSON 으로 자동 형 변환하여 응답  (@RestController 에 포함되므로 생략 가능)
+9. @RequestParam    : HTTP 쿼리스트링 / form-Data 에서 기본 타입 / 공식 타입 의 값을 매핑 시 사용
+10. @RequestBody    : HTTP BODY "application/json" -> 자바 객체의 값으로 매핑 시 사용
+    => 생략 시 @ModelAttribute 가 자동 주입되므로 반드시 명시
+11. @ModelAttribute : HTTP 요청 매핑의 기본 어노테이션으로 생략 가능 / 쿼리스트링 매핑 시 사용
+
+    <관례적 사용처>
+    -
+    @RequestMapping (공통 URL) || @XXXMapping(특정 URL)
+    -
+    @RequestParam (쿼리스트링) || @RequestBody(BODY) || @ModelAttribute (form-data)
+    -
+    @Controller (페이지 (HTML / JSP) 반환) || @RestController (Resources / JSON / 값 반환)
+
+[REST]
+- 정의 : 웹에 자원을 관리하는 아키텍쳐(설계 구조)
+- 자원(Resource) / 행동 (Method) 표현 개념
+- HTTP 프로토콜을 이용하여 클라이언트(유저) <-통신-> 서버(톰캣) 을 일관서 있게 유지 / 구성
+
+[REST API]
+- REST 아키텍쳐에 따른 API
+- REST 기반의 웹 서비스 인터페이스를 구축하는 것
+- HTTP 에 따른 요청을 통해 자원을 CRUD 할 수 있도록 함
+
+[RESTFUL API]
+- REST API 의 아키텍쳐를 올바르게 사용하는지에 대한 확인 / 개념
+- 조건
+    1) 일관성된 URL 사용
+    2) 적절한 HTTP Method 사용 (POST, GET , PUT , DELETE)
+    3) 소켓과 다르게 무상태성 유지
+    4) 응답 데이터는 주로 JSON / XML 을 제공
+
+
