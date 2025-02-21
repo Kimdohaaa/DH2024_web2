@@ -24,11 +24,20 @@ repositories {
 }
 
 dependencies {
+    // Spring Web 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // lombok 라이브러리
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // JDBC 라이브러리
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // MyBatis 라이브러리
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 }
 
 tasks.named('test') {
