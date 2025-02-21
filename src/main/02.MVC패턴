@@ -1,0 +1,69 @@
+[MVC 패턴]
+1. 정의 : 소프트웨어 공학에서 사용하는 디자인 패턴 중 하나
+2. 목적 ; 프로그램을 깔끔하고 효율적으로 만드릭 위해 사용되는 설계 방법
+3. 종류
+    1) MVC1 : Controller(제어) + view(화면)
+        -> JSP 파일에서 화면(HTML)과 제어(로직) 을 한번에 작성하는 방법
+        -> 장점 : 빠른 개발
+        -> 단점 : 유지보수와 역할 분담이 어렵다. ( 과거에 주로 사용 )
+        <흐름도>
+        View/Controller <-Model(DTO)-> DAO
+    2) MVC2 : Controller(Servlet) 과 view(화면)을 분리
+        -> JSP 파일에서는 단순 화면(HTML) 구현 / Servlet 에서 제어(로직)을 작성하는 방법
+        -> 장점 : 로직과 화면 분리
+        -> 단점 : 클래스 , 파일의 수 가 많아진다. ( node.js 출시 후(2010년 이후) 부터 주로 사용 )
+        <흐름도>
+        View(JSP/JS) <--Model(DTO)-> Controller(Servlet) <-Model(DTO)-> DAO
+    3) MVC2 3Tire : Controller 를 Controller 와 service 와 DAO(=Repository) 분리
+        -> Controller 에 역할을 조금 더 세분화하여 분리하여 작성하는 방법( Spring 프레임워크 / 대규모 프로젝트에서 사용 )
+        -> 장점 : 역할에 대한 분업 등의 유지보수가 편리하고 확장성이 좋음
+        -> 단점 : 클래스 , 파일 수가 많아져 파일관리의 복잡도가 높아진다.
+        <흐름도>
+        View( JSP(Spring 에서 지원 X)/Thymeleaf/Mustache(Spring 공식 템플릿)/react(현재 트렌드))
+            <-Model(DTO)->
+        Controller( Spring 에서 지원하는 @RestController / @Controller ) : HTTP Request 와 Response / 유효성 검사 를 주로 담당
+            <-Model(DTO)->
+        Service( Spring 에서 지원하는 @Service) : 비즈니스 로직을 담당(CRUD/데이터 검증/연산/알고리즘/트랜젝션 기능 수행)
+            <-Model(DTO)->
+        Dao(=Repository)( Spring 에서 지원하는 @Repository ) : DB 와 연동하여 SQL 처리를 담당
+5. Spring 프레임워크에서 공식적인 MVC 패턴 지원
+    ★ JVM 아키텍쳐 / Spring 아키텍쳐 / TomCat 아키텍쳐 공부하기 ★
+    1) View : src -> main -> resource 폴더 내 모든 파일을 자동으로 View 로 인식
+        <resource 폴더>
+            - static(정적) 폴더    : Spring 은 정적 파일들을 자동으로 static 에서 찾음
+                * 정적 파일 : HTML / CSS / JS / IMG 등
+            - templates(동적) 폴더 : Spring 은 동적 파일들을 자동으로 templates 에서 찾아 렌더링(HTML 반환)
+                * 동적 파일 : JSP / Thymeleaf / Mustache / react / vue.js 등
+    2) Controller : Spring 은 시작과 동시에 @RestController 와 @Controller 가 주입된 클래스들을 스캔(탐색) 하여 컨테이너에 등록
+    3) Service : Spring 은 시작과 동시에 @Service 가 주입된 클래스들을 스캔(탐색) 하여 컨테이너에 등록
+    4) DAO(Repository) : Spring 은 시작과 동시에 @Repository 가 주입된 클래스들을 스캔(탐색) 하여 컨테이너에 등록
+
+    => Spring : enterprise(대규모) 소프트웨어를 제공 => 모두 지원하기 때문
+
+[Spring MVC2 3Tire 패키지 구조]
+프로젝트명
+    -> src
+        -> main
+            -> java
+                -> 패키지명(관례적으로 홈페이지 명 사용) ★ 주의점 : 최소 1개 이상의 패키지 생성 ★
+                    -> AppStart 클래스 ★ 주의점 : 가장 상단에 위치 ★
+                    -> Service 패키지
+                    -> Model 패키지
+                        -> DAO 패키지
+                        -> VO 패키지          : Value Object 로 수정 불가능한 객체
+                        -> Entity 패키지      : 매핑 객체
+                        -> Repository 패키지  : DB 매핑 인터페이스
+                    -> Controller 패키지
+                    -> Config 패키지          : 설정 패키지
+
+흐름
+    1) AppStart 의 @SpringBootApplication 어노테이션이 각 @Controller / @Service 를 컨테이너(메모리)에 등록
+    -> Request : AppStart -> Controller -> Service -> Repository -> DB
+    -> Response : DB -> Repository -> Service -> Controller -> View
+
+
+
+
+
+
+
