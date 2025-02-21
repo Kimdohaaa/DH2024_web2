@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE
+        mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="example.day03.mvc2_mybatis.model.mapper.MyMapper">
+    <!-- XML 주석은 HTML 과 동일 ( XML 은 마크업 언어 )-->
+
+    <!-- INSERT -->
+    <!-- MyMapper Class 의 save 함수 -->
+    <insert id="save" parameterType="example.day03.mvc2_mybatis.model.dto.MyDto">
+                        <!-- 리턴값 타입의 기본값은 int 로 리턴값이 int 타입인 경우 resultType 생략 가능 -->
+        <!-- 와일드카드 대신 #{데이터} 를 통해 데이터를 전달함 -->
+        insert into user(name , age) values (#{name} , #{age})
+    </insert>
+
+    <!-- SELECT -->
+    <!-- MyMapper Class 의 findAll 메소드와 매핑 -->
+    <select id="findAll" resultType="example.day03.mvc2_mybatis.model.dto.MyDto">
+                        <!-- 매개변수가 없기 때문에 parameterType 생략 -->
+                        <!-- ResultType 으로 리턴할 타입 지정 -->
+        select * from user
+    </select>
+
+    <!-- MyMapper Class 의 find 메소드와 매핑 -->
+    <select id="find" parameterType="int"
+                    resultType="example.day03.mvc2_mybatis.model.dto.MyDto">
+        select * from user where id = #{id}
+    </select>
+
+    <!-- UPDATE -->
+    <!-- MyMapper Class 의 update 메소드와 매핑 -->
+    <update id="update" parameterType="example.day03.mvc2_mybatis.model.dto.MyDto">
+                    <!-- 리턴값 타입의 기본값은 int 로 리턴값이 int 타입인 경우 resultType 생략 가능 -->
+        update user set name = #{name} , age = #{age} where id = #{id}
+    </update>
+
+    <!-- DELETE -->
+    <!-- MyMapper Class 의 delete 메소드와 매핑 -->
+    <delete id="delete" parameterType="example.day03.mvc2_mybatis.model.dto.MyDto">
+        delete from user where id = #{id}
+    </delete>
+
+</mapper>
