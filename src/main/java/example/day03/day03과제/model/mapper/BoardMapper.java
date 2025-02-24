@@ -5,16 +5,18 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
+@Mapper // IOC(제어의 역전) : 컨테이너(메모리)에 bean 주입
 public interface BoardMapper {
-    // [1] 등록
+
+    // XML 소스파일에서 DB 와 매핑할 추상메소드 //
+    // [1] 등록 -> Service 가 매개변수로 전달한 값 DB 와 매핑 후 결과 반환
     boolean write(BoardDto board);
-    // [2] 전체 출력
+    // [2] 전체 출력 -> Service 가 매개변수로 전달한 값 DB 와 매핑 후 결과 반환
     List<BoardDto> findAll();
-    // [3] 개별 출력
+    // [3] 개별 출력 -> Service 가 매개변수로 전달한 값 DB 와 매핑 후 결과 반환
     BoardDto find(int bno);
-    // [4] 수정
+    // [4] 수정 -> Service 가 매개변수로 전달한 값 DB 와 매핑 후 결과 반환
     boolean update(BoardDto board);
-    // [5] 삭제
+    // [5] 삭제 -> Service 가 매개변수로 전달한 값 DB 와 매핑 후 결과 반환
     boolean delete(int bno);
 }
