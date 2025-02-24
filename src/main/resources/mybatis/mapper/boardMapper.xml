@@ -4,7 +4,13 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- DB 와 연동할 인터페이스 경로 -->
 <mapper namespace="example.day03.day03과제.model.mapper.BoardMapper">
+    <!--
+    id = 매핑할 추상메소드 명
+    parameterType = 전달받은 매개변수 타입 (기본자료형이 아닌 클래스자료형일 경우 경로 입력)
+    resultType = 반환할 리턴 타입 (생략 시 SQL 이 처리한 레코드 수 반환)
+    -->
     <!-- INSERT -->
     <insert id="write" parameterType="example.day03.day03과제.model.dto.BoardDto">
         insert into board(title , content) values (#{title} , #{content})
