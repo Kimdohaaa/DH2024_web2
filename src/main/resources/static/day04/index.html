@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h3> 실제 코드 파일 경로(개발자가 코드를 치는 곳) : C:~~~\DH2024_web2\src\main\resources\static\day04</h3>
+  <h3> 내장 서버 배포 파일 경로(실제 코드가 저장되는 곳) : C:~~~\DH2024_web2\build\resources\main\static\day04\index.html</h3>
+  <h3> 배포된 HTTP 경로(사용자가 사용하는 곳) : http://localhost:8080/day04/index.html</h3>
+
+  학생명 : <input type="text" class="name"/>
+  <br/>
+  국어점수 : <input type="text" class="kor"/>
+  <br/>
+  수학점수 : <input type="text" class="math"/>
+  <button type="button" onclick="onSave()"> 등록 </button>
+ <hr>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>학생번호</th>
+        <th>학생명</th>
+        <th>국어점수</th>
+        <th>수학점수</th>
+        <th>비고</th>
+      </tr>
+    </thead>
+    <tbody class="tbody">
+      <tr>
+        <td>1</td>
+        <td>유재석</td>
+        <td>30</td>
+        <td>40</td>
+        <td>
+          <button type="button">수정</button>
+          <button type="button">삭제</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Axois JS -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
