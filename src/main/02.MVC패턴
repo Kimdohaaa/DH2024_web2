@@ -63,6 +63,78 @@
 
 
 
+[DB 연동 방법]
+1. DAO (JDBC)
+    - 자바에서 DB 와 상호작용하기 위한 java 표준 라이브러리
+    - SQL 을 직접 작성하고 실행하며 DB 연결 / 관리
+    - 주요 인터페이스
+        1) Connection : DB 연결관리
+        2) PreparedStatement : SQL 실행과 매개변수 관리
+        2) ResultSet : SQL select 문 실행 결과 관리
+2. MyBatis
+    - JDBC 보다 더 다양한 기능을 제공하는 프레임워크
+    - 객체와 DB 간의 매핑을 자동화
+    - 주요 특징
+        1) SQL 코드를 XML 파일에 작성하여 자바 객체와 매핑
+        2) SQL 결과를 자동으로 자바 객체로 자동 타입변환
+        3) 유연성이 있기 때문에 복잡한 쿼리와 제어 가능
+        4) Spring 과 통합 가능
+    - MyBatis 로 DB 연동
+        1) 프로젝트 내 MyBatis , JDBC 라이브러리 build
+        2) application.properties (Spring 프레임 워크가 실행될 때 읽어들이는 설정 파일) 에서 DB 연동
+            ★ 주의점 : 위치는 resources 폴더 하위에 존재해야 인식됨 ★
+            -> DB 연동 : spring.datasource.url =jdbc:mysql://localhost:포트번호/연동할 DB 명
+            -> DB 계정 연동 : spring.datasource.username =계정명
+            -> DB 비밀번호 연동 : spring.datasource.password =비밀번호
+            ★ ! 주의점 : 이퀄 뒤에 띄어쓰기도 인식하므로 띄어쓰지 말기 ! ★
+        3) .XML 파일이 존재하는 경로 설정 : MyBatis 는 XML 파일을 이요하여 자바 객체와 매핑하기 때문
+            ★ 주로 resource 폴더 하위에서 작업 ★
+            -> mybatis.mapper-locations = classpath:resources 의 mybatis 폴더 경로/*.xml
+    - 자바와 매핑하기
+        [XML 소스파일 사용]
+            - 주로 복잡한 SQL 문 작성 시 사용
+            1) 설정한 MyBatis xml 파일 경로에 .xml 확자자를 가진 파일 생성
+            2) XML 파일 상단에 MyBatis 연동 코드 작성
+                연동코드 :<?xml version="1.0" encoding="utf-8"?>
+                         <!DOCTYPE
+                         mapper
+                         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+            3) 해당 XML 과 연동할 인터페이스명 설정
+                ★ 주의점 : 매핑할 인터페이스명이 위치한 경로까지 포함 ★
+                연동코드 : <mapper namespace="자바 하위부터 설정할 인터페이스까지의 경로">
+                         예] "example.day03.mvc2_mybatis.model.MyMapper"
+            4) <mapper> </mapper> 사이에 SQL 마크업을 이용하여 SQL 작성
+                - XML 은 마크업 언어로  DML 마크업을 지원함
+                    <insert> </insert>
+                    <select> </select>
+                    <update> </update>
+                    <delete> </delete>
+                - XML 은 쿼리의 매개변수를 지원함
+                    <마크업명 id="인터페이스내 매핑할 추상메소드 명"
+                                            parameterType="사용할 매개변수의 경로 / 기본자료형 사용 시 자료형"
+                                            resultType="리턴값의 타입 경로 / 기본자료형 일 시 자료형">
+                        #{매개변수명}
+                    </마크업명>
+                    ★ 주의점 : 매개변수로 받은 DTO 에 존재하지 않은 변수는 사용불가 / DTO 내 변수명과 동일하게 작성해야함 ★
+                    ★ int 는 resultType 의 기본값으로 리턴값이 int 일 경우 resultType 생략가능 ★
+                    ★ resultType 생략 시 자동을 SQL 이 처리한 레코드 수(int)를 반환함 ★
+
+        [어노테이션 사용]
+            - Mapper 인터페이스에서 SQL 매핑 어노테이션을 통해 매핑
+            - 주로 간단한 SQL 문 작성 시 사용
+            - XML 파일에 작성하는 것과 같이 #{변수명}을 통해 SQL 문 작성
+            - 서브 쿼리 가능
+            1. @Insert("SQL 문")
+            2. @Select("SQL 문")
+            3. @Update("SQL 문")
+            4. @Delete("SQL 문")
+
+
+[MyBatis 라이브러리 설치]
+- start.spring.io 에서 MyBatis add 후 해당 코드 build.gradle 에 붙여넣기
+[JDBC 라이브러리 설치]
+- start.spring.io 에서 MysqlJDBC add 후 해당 코드 build.gradle 에 붙여넣기 (Spring 말고 그냥 JDBC)
 
 
 

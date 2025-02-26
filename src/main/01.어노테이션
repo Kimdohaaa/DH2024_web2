@@ -176,6 +176,9 @@
 10. @RequestBody    : HTTP BODY "application/json" -> 자바 객체의 값으로 매핑 시 사용
     => 생략 시 @ModelAttribute 가 자동 주입되므로 반드시 명시
 11. @ModelAttribute : HTTP 요청 매핑의 기본 어노테이션으로 생략 가능 / 쿼리스트링 매핑 시 사용
+12. @Service        : MVC2 2Trie 패턴의 Service(비즈니스 로직 -> 실질적인 코드) 담당
+13. @Mapper         : MyBatis 환경에서 XML , 어노테이션의 SQL 을 매핑 처리
+
 
     <관례적 사용처>
     -
