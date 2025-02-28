@@ -20,11 +20,11 @@ public class StudentService {
 
     // [1] 학생등록
     public  int save(HashMap<String, Object> map){
-        aopClass.beforeCheckService("save", map);
+        //aopClass.beforeCheckService("save", map);
 
         int result = studentMapper.save(map);
 
-        aopClass.afterCheckService(result);
+        //aopClass.afterCheckService(result);
         return result;
     }
 
@@ -33,9 +33,9 @@ public class StudentService {
     // 전체조회
     public List<Map<String, Object>> findAll(){
 
-        aopClass.beforeCheckService("findAll", null);
+        //aopClass.beforeCheckService("findAll", null);
         List<Map<String, Object>> result = studentMapper.findAll();
-        AopClass.afterCheckService(result);
+        //AopClass.afterCheckService(result);
         return result;
     }
 

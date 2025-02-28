@@ -22,23 +22,23 @@ public class StudentController {
     // [1] 학생점수등록
     @PostMapping
     public int save(@RequestBody HashMap<String, Object> map){ // DTO 대신 HashMap 사용
-        aopClass.beforeCheck("save", map);
+        //aopClass.beforeCheck("save", map);
 
 
         int result =  studentService.save(map);
-        aopClass.afterCheck(result);
+        //aopClass.afterCheck(result);
 
         return  result;
     }
     // [2] 학생 점수
     @GetMapping
     public List<Map<String, Object>> findAll(){
-        aopClass.beforeCheck("findAll", null);
+        //aopClass.beforeCheck("findAll", null);
 
 
         List<Map<String,Object>> result = studentService.findAll();
 
-        aopClass.afterCheck(result.toString());
+        //aopClass.afterCheck(result.toString());
 
         return result;
     }
