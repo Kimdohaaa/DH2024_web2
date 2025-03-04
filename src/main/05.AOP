@@ -52,3 +52,10 @@
         5_("execution (value = "execution (리턴타입 리턴패키지명.클래스명.함수명(매개변수타입))", returning="매개변수명")
 
 
+[ProceedingJoinPoint]
+-> AOP 에서 사용하는 인터페이스
+-> 제공하는 메스드
+    1) .proceed() : 지정한 메소드를 실행하는 메소드
+    2) .getArgs() : 지정한 메소드이 매개변수를 배열타입으로 반환
+    3) .getSignature() : 지정한 메소드의 시그니처(함수명/리턴타입/매개변수) 반환
+    4) .getTarget() : 지정한 메소드를 실행한 인스턴스 객체 반화
