@@ -47,5 +47,15 @@ import Example1 from './example/2_컴포넌트/Example1.jsx';
 import Example2 from './example/2_컴포넌트/Example2.jsx';
 // root.render(<Example2/>)
 
+// [3] day02 과제
 import Task from './example/2_컴포넌트/task.jsx';
 root.render(<Task/>)
+
+// ※※※ day03 : 컴포넌트의 JSX 활용 ※※※ //
+
+
+// ※※※ day04 : 컴포넌트의 JSX 활용 ※※※ //
+
+
+// ※※※ day05 : 컴포넌트의 JSX 활용 ※※※ //
+
