@@ -75,7 +75,7 @@ function Component6(props){
     // JSX 문법의 목록(li, option 등) 마크업에서는 key 속성 필수!!
     // => 리액트는 자동렌더링(새로고침) 시 key 의 변화를 감지하여 변화된 key 만 별도로 렌더링하는 기능이 포함되어있기 때문
     // => key 값을 넣지 않을 시 경고 
-    // JSX 문법에서는 forEach() 보다는 map() 을 주로 사용
+    // JSX 문법에서는 forEach() 보다는 map() 을 주로 사용 => forEach() 는 return 이 없기 때문
 
     return(
         <>
@@ -94,10 +94,9 @@ function Component6(props){
 import './Example1.css' // CSS 파일 import
 function Component7(props){
     // 기존 방식 : style="~~~`" => 불가
-    // JSX 방식 : style={{CSS 객체}} => 가능
-    // JSX 에서는 CSS 가 객체 형태로 인식됨
+    // JSX 방식 : style={{CSS 객체}} => 가능 => JSX 에서는 CSS 가 객체 형태로 인식됨
     // JSX 는 class 가 아닌 className 속성 사용
-    // 주의점 : JSX 파일 내에서 객체 형태로 CSS 사용 시 하이픈 대신 카멜표기법 필수! 예] fontSize 
+    // 주의점 : JSX 파일 내에서 객체 형태(인라인 형식)로 CSS 사용 시 하이픈 대신 카멜표기법 필수! 예] fontSize 
 
     const cssObj = {color : 'red'}
     return(
@@ -107,7 +106,7 @@ function Component7(props){
             {/* 방법_2 : CSS 객체 필요 */}
             <h4 style={cssObj}> 인라인 형식의 객체 CSS 넣기</h4>
             {/* 방법_3 : 생성한 CSS 파일 import 필요 */}
-            <h4 className="myClass"> CSS 파일 내 선택자를 이용한 CSS 넣기</h4>
+            <h4 className="myClass"> 선택자를 이용하여 CSS 파일 내 CSS 넣기</h4>
         </>
     )
 }
