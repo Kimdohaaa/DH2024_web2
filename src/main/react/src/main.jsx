@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css' // CSS 를 기본값 제거 시 지우기~
-import App from './App.jsx'
+// import './index.css' // CSS 를 기본값 제거 시 지우기~
+// import App from './App.jsx'
 
 /* 
 --- 기본코드 주석처리 ---
@@ -30,7 +30,7 @@ import Component1 from './example/1_동작구조/Component1.jsx';
 // 기본 컴포넌트 //
 
 // [1] 컴포넌트 호출
-import Component2 from './example/1_동작구조/Component2.jsx';
+// import Component2 from './example/1_동작구조/Component2.jsx';
 
 // [2] 렌더링 ! 렌더링은 한번만 !
   // 기본컴포넌트인 Component2 에 Header 컴포넌트와 Footer 컴포넌트가 종속되어 있음
@@ -40,22 +40,52 @@ import Component2 from './example/1_동작구조/Component2.jsx';
 
 // ※※※ day02 : 컴포넌트의 JSX 활용 ※※※ //
 // [1] 컴포넌트 JSX 활용
-import Example1 from './example/2_컴포넌트/Example1.jsx';
+// import Example1 from './example/2_컴포넌트/Example1.jsx';
 //root.render(<Example1/>)
 
 // [2] : 컴포넌트의 props 활용
-import Example2 from './example/2_컴포넌트/Example2.jsx';
+// import Example2 from './example/2_컴포넌트/Example2.jsx';
 // root.render(<Example2/>)
 
 // [3] day02 과제
-import Task from './example/2_컴포넌트/task.jsx';
-root.render(<Task/>)
+// import Task from './example/2_컴포넌트/task.jsx';
+// root.render(<Task/>)
 
-// ※※※ day03 : 컴포넌트의 JSX 활용 ※※※ //
+// ※※※ day03 : 훅 ※※※ //
+// [1] 리액트 훅 X 컴포넌트
+// import Example1 from './example/3_훅/Example1.jsx';
+// root.render(<Example1/>)
+
+// [1] 리액트 훅 O 컴포넌트
+// import Example2 from './example/3_훅/Example2.jsx';
+// root.render(<Example2/>)
+
+// import Example3 from './example/3_훅/Example3.jsx';
+// root.render(<Example3/>)
+
+// [2] day03 과제_1
+
+// import Task1 from './example/3_훅/task1.jsx';
+// root.render(<Task1/>)
+
+// [3] day03 과제_2
+//import Task2 from './example/3_훅/task2.jsx';
+//root.render(<Task2/>)
 
 
-// ※※※ day04 : 컴포넌트의 JSX 활용 ※※※ //
 
 
-// ※※※ day05 : 컴포넌트의 JSX 활용 ※※※ //
+// ※※※ day04 : 훅 / 라우터 ※※※ //
+// [1] 훅 : useEffct()
+// import Example1 from './example/4_훅/Example1.jsx';
+//root.render(<Example1/>)
 
+// [2] 라우터
+import App from './example/5_라우터/Example1.jsx';
+root.render(<App/>)
+
+
+// ※※※ day05 : AXIOS ※※※ //
+// [1]
+import Example1 from './example/6_AXIOS/Example1.jsx';
+root.render(<Example1/>)
