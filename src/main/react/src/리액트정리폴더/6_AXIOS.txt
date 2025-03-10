@@ -1,0 +1,27 @@
+[AXIOD]
+- 리액트의 AXIOS 설치 
+    1) 프로젝트 최상위 폴더 : npm i axios;
+    2) npm install
+    3) npm run dev
+    4) package.json 파일에 dependencies 에 설치 됐는지 확인
+    ★ 라이브러리 설치 시 서버 종료하고 설치 ★
+
+- 형식 :  const 결과를저장할변수명 = await axios.HTTP메소드명('HTTP 주소',{body}, {option});
+    -> path variable : / (슬래시) 를 이용하여 매개변수 전달
+    -> queryString : ? (물음표) 를 이용하여 매개변수 전달
+    -> BODY : 보낼 자료 / 데이터 객체 {}
+    -> OPTION : HTTP header 설정 
+        1) {headers : {HTTP header 타입}}
+        ★ {Content-Type : application/json} 이 기본값으로 생략 가능 ★
+
+- 동기 통신 시 async 키워드와 await 키워드 사용
+
+- 오류 
+    1) CORS policy (Cross Origin Resource Sharing 정책) 
+        -> 정의 : 브라우저에서 다른 도메인(HTTP 주소)의 리소스(자료)를 요청할 때 발생하는 보안 정책
+        -> 목적 : 2009 년도에 표준화된 보안 정책 SOP(Same-origin-policy) => 동일한 도메인 끼리만 리소스를 허용
+            => SOP(동일한 도메인) | CORS(서로 다른 도메인)
+        -> JS 사용 시 : JS(localhost:8080) ---> Spring(localhost:8080) => 도메인이 같으므로 오류 X
+        -> React 사용 시 : react(localhost:5181) ---> Spring(localhost:8080) => 도메인이 달라 오류 발생
+        -> 해결 방법 : 서로 다른 도메인 간의 리소스 공유를 허용 (= CORS 허용)
+            1) 자바 : Controller 클래스에 @CrossOrigin("허용할 도메인")

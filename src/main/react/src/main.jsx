@@ -86,6 +86,14 @@ root.render(<App/>)
 
 
 // ※※※ day05 : AXIOS ※※※ //
-// [1]
-import Example1 from './example/6_AXIOS/Example1.jsx';
-root.render(<Example1/>)
+// [1] 이벤트 함수와 AXIOS
+// import Example1 from './example/6_AXIOS/Example1.jsx';
+// root.render(<Example1/>)
+
+// [2] 방문록
+// import Example2 from './example/6_AXIOS/Example2.jsx';
+// root.render(<Example2/>);
+
+// [3] day05 과제 _ 전화번호부
+import Task1 from './example/6_AXIOS/task1.jsx';
+root.render(<Task1/>)

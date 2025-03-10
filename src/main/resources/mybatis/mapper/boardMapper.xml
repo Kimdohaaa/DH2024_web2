@@ -5,7 +5,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- DB 와 연동할 인터페이스 경로 -->
-<mapper namespace="example.day03.day03과제.model.mapper.BoardMapper">
+<mapper namespace="example.day07.day03과제.model.mapper.BoardMapper">
     <!--
     id = 매핑할 추상메소드 명
     parameterType = 전달받은 매개변수 타입 (기본자료형이 아닌 클래스자료형일 경우 경로 입력)
