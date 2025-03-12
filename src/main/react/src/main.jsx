@@ -78,11 +78,11 @@ import Component1 from './example/1_동작구조/Component1.jsx';
 // ※※※ day04 : 훅 / 라우터 ※※※ //
 // [1] 훅 : useEffct()
 // import Example1 from './example/4_훅/Example1.jsx';
-//root.render(<Example1/>)
+// root.render(<Example1/>)
 
 // [2] 라우터
-import App from './example/5_라우터/Example1.jsx';
-root.render(<App/>)
+// import App from './example/5_라우터/Example1.jsx';
+// root.render(<App/>)
 
 
 // ※※※ day05 : AXIOS ※※※ //
@@ -95,5 +95,23 @@ root.render(<App/>)
 // root.render(<Example2/>);
 
 // [3] day05 과제 _ 전화번호부
-import Task1 from './example/6_AXIOS/task1.jsx';
-root.render(<Task1/>)
+// import Task1 from './example/6_AXIOS/task1.jsx';
+// root.render(<Task1/>)
+
+
+// ※※※ day06 : AXIOS ※※※ //
+// import App from './example/7_AXIOS/App.jsx';
+// root.render(<App/>) // 다른 컴포넌트의 가상 URL 이 포함된 라우터 컴포넌트를 .render()
+
+
+// ※※※ day07 : 과제 ※※※ //
+import App from './example/8_과제/App.jsx';
+root.render(<App/>)
+
+
+// ※※※ day05 : AXIOS ※※※ //
+// ※※※ day05 : AXIOS ※※※ //
+// ※※※ day05 : AXIOS ※※※ //
+
+
+

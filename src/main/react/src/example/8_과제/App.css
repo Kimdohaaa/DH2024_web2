@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+    margin: 0 auto;;
+    padding: 0;
+}
+a{
+    color:  black;
+    text-decoration:  none;
+}
+li{list-style-type: none;}
+#wrap{display: flex;}
+
+/* 선택자 > 하위선택자:nth-child(순번) : CSS 자식 선택자 (하위 선택자가 여러개 일 때 순번으로 선택) */
+#wrap > div:nth-child(1){ /* 사이드바 div */
+    /* #Wrap 선택자의 하위는 사이드바 div / 본문 div 선택 */
+    /* (1) : 사이드바 div */
+    /* (2) : 본문 div */
+    width: 10%;
+}
+#sidemenu > li {
+    margin: 50px 10px;
+}
+#wrap > div:nth-child(2){ /* 본문 div */
+    width: 90%;
+    margin: 50px 2px;
+    text-align: center;
+}
+
+#wrap > div:nth-child(3){
+    margin:  50px;
+}
