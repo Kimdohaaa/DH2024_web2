@@ -22,3 +22,19 @@ CREATE TABLE student_score (
 );
 
 -- ---------------------- ------ ---------------------------------- --
+### 2025-03-11 제품 CRUD
+
+DROP TABLE if EXISTS day08product;
+
+create table day08product (
+	pno int auto_increment,
+    pname varchar(50),
+    pprice int,
+    pexplain text,
+    constraint primary key (pno)
+);
+
+insert into day08product (pname, pprice, pexplain) values ("등록테스트", 12000, "등록확인");
+insert into day08product (pname, pprice, pexplain) values ("등록테스트", 12000, "등록확인");
+insert into day08product (pname, pprice, pexplain) values ("등록테스트", 12000, "등록확인");
+

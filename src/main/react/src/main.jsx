@@ -105,11 +105,22 @@ import Component1 from './example/1_동작구조/Component1.jsx';
 
 
 // ※※※ day07 : 과제 ※※※ //
-import App from './example/8_과제/App.jsx';
-root.render(<App/>)
+// import App from './example/8_과제/App.jsx';
+// root.render(<App/>)
 
 
-// ※※※ day05 : AXIOS ※※※ //
+// ※※※ day08 : MUI ※※※ //
+// [1] Material
+// import Example1 from './example/9_MUI/Example1.jsx';
+// root.render(<Example1/>)
+
+// [2] Joy UI
+// import Example2 from './example/9_MUI/Example2.jsx';
+// root.render(<Example2/>)
+
+// [3] Chart
+import Example3 from './example/9_MUI/Chart.jsx';
+root.render(<Example3/>)
 // ※※※ day05 : AXIOS ※※※ //
 // ※※※ day05 : AXIOS ※※※ //
 
