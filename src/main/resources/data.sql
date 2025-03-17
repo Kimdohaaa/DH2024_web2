@@ -1,3 +1,11 @@
+------------------------ web ----------------------------
+INSERT INTO member (mid, mpwd, mname) VALUES
+('user1', 'password123', '김철수'),
+('user2', 'qwerty456', '이영희'),
+('user3', 'abcde789', '박민준'),
+('user4', 'helloWorld', '정다은'),
+('user5', 'son1234', '손흥민');
+
 -- ---------------------- day05 ---------------------------------- --
 -- 학생 테이블 샘플 데이터 삽입
 INSERT INTO student (name, kor, math) VALUES ('김철수', 90, 85);

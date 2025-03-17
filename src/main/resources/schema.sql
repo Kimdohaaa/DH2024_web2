@@ -1,3 +1,15 @@
+----------------------- web -------------------------------
+DROP TABLE if EXISTS member;
+CREATE TABLE member (
+    mno   INT UNSIGNED AUTO_INCREMENT,  -- 회원 번호 (기본키)
+    mid   VARCHAR(50) NOT NULL UNIQUE,     -- 회원 아이디
+    mpwd  VARCHAR(255) NOT NULL,           -- 비밀번호
+    mname VARCHAR(100) NOT NULL,           -- 회원 이름
+    mimg  VARCHAR(255) DEFAULT NULL,        -- 프로필 이미지 URL
+    CONSTRAINT PRIMARY KEY(mno)
+);
+
+
 -- ---------------------- day05 ---------------------------------- --
 -- 학생 테이블
 DROP TABLE if EXISTS student_score;
@@ -22,7 +34,7 @@ CREATE TABLE student_score (
 );
 
 -- ---------------------- ------ ---------------------------------- --
-### 2025-03-11 제품 CRUD
+-- 2025-03-11 제품 CRUD
 
 DROP TABLE if EXISTS day08product;
 
@@ -33,8 +45,4 @@ create table day08product (
     pexplain text,
     constraint primary key (pno)
 );
-
-insert into day08product (pname, pprice, pexplain) values ("등록테스트", 12000, "등록확인");
-insert into day08product (pname, pprice, pexplain) values ("등록테스트", 12000, "등록확인");
-insert into day08product (pname, pprice, pexplain) values ("등록테스트", 12000, "등록확인");
 
