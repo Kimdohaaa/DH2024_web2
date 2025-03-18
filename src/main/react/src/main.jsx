@@ -1,5 +1,6 @@
-import { StrictMode } from 'react'
+import { StrictMode } from 'react' // 예외처리 모드 -> 렌더링을 2번해줌 * 선택사항*
 import { createRoot } from 'react-dom/client'
+
 // import './index.css' // CSS 를 기본값 제거 시 지우기~
 // import App from './App.jsx'
 
@@ -15,14 +16,14 @@ createRoot(document.getElementById('root')).render(
 // ※※※ day01 ※※※ //
 
 // [1] 컴포넌트 파일의 확장자를 js 로 지정할 경우
-import React from "react"; // -> 를 통해 명시해야함
+// import React from "react"; // -> 를 통해 명시해야함
   // 컴포넌트 파일의 확장자가 .jsx 일 경우 생략 가능
 
 // [2] index.html 에 "#root" 구역 가져오기
 const root = createRoot( document.querySelector("#root"));
 
 // [3] import 호출할 컴포넌트명 from `해당 컴포넌트 경로`
-import Component1 from './example/1_동작구조/Component1.jsx'; 
+// import Component1 from './example/1_동작구조/Component1.jsx'; 
 
 // root.render(<Component1/>) // !!! 마크업 슬래스로 꼭 닫아주기 !!!
 
@@ -119,10 +120,12 @@ import Component1 from './example/1_동작구조/Component1.jsx';
 // root.render(<Example2/>)
 
 // [3] Chart
-import Example3 from './example/9_MUI/Chart.jsx';
-root.render(<Example3/>)
-// ※※※ day05 : AXIOS ※※※ //
-// ※※※ day05 : AXIOS ※※※ //
+// import Example3 from './example/9_MUI/Chart.jsx';
+// root.render(<Example3/>)
 
 
+
+// web //
+import App from './components/App.jsx';
+root.render(<App/>)
 
