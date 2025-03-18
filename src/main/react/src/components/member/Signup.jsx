@@ -9,7 +9,7 @@ export default function Signup(props){
 
     // [1] 입력받은 값들을 저장하는 state 변수 선언
     // => useState() : 값 변경 시 리렌더링됨
-    const [memberinfo, setMemberInfo] = useState({mid : "", mpwd : "", mname : "", uploadfile : ""})
+    const [memberinfo, setMemberInfo] = useState({mid : "", mpwd : "", mname : ""})
     
     // [2] 입력받은 값을 state 렌더링하는 메소드
     const onInputChange = (e) => {
@@ -20,12 +20,45 @@ export default function Signup(props){
         console.log(memberinfo)
     }
 
-    // [3] 입력받은 첨부파일 state 렌더링하는 메소드
+    // [3] 입력받은 첨부파일 state 렌더링하는 메소드 / 첨부파일 미리보기
+    // 1) 업로드파일을 저장하는 state 변수 선언 
+    const [profile, setProfile] = useState(null);
+
+    // 2) 업로드된 파일을 바이트로 저장하는 state 변수 선언
+    const [preview, setPreview] = useState(null)
+
     const onFileChange = (e) => {
+        // 3) 업로드된 파일 가져오기
         // e.target.files[0] : 사용자가 입력한 파일 객체를 반환받음 ([0] : 한개 가져옴)
-        console.log(e.target.files[0])
-        // 사용자가 입력한 파일 객체를 state 에 대입
-        setMemberInfo({...memberinfo, "uploadfile" : e.target.files[0]})
+        const file = e.target.files[0];
+
+        // 4) 업로드된 파일을 state 변수에 저장
+        setProfile(file)
+
+        // 5) 미리보기
+        if(file){ // 만약 파일이 존재하면
+            // 6) 파일 읽기 객체 선언
+            // FileReader() : 파일 읽기를 지원하는 JS 객체
+            const reader = new FileReader() ;
+            
+            // 7) 파일 읽기 메소드 정의 => onloadend() 메소드
+            // FileReader객체명.onloadend = () => {}
+            reader.onloadend = () => {
+                // 읽어들인 파일 객체 콘솔에 출력 => result
+                // FileReader객체명.result => 바이트 배열로 반환함
+                console.log(reader.result) 
+                // 8) 반환된 바이트 배열 state 변수에 대입
+                setPreview(reader.result)
+            }
+
+            // 9) 파일 읽기 => redaAsDataURL()
+            // FileReader객체명.readAsdataURL(읽어들일 파일 객체)
+            reader.readAsDataURL(file)
+
+        }else{ // 10) 만약 파일이 존재하지 않으면
+            // 11) state 변수에 null 대입
+            setPreview(null)
+        }
     }
 
     console.log(memberinfo)
@@ -40,8 +73,12 @@ export default function Signup(props){
             formDate.append('mid', memberinfo.mid);
             formDate.append('mpwd' , memberinfo.mpwd);
             formDate.append('mname' , memberinfo.mname);
-            formDate.append('uploadfile' , memberinfo.uploadfile);
-            
+
+            // * 첨부파일 존재 여부 검사
+            if(profile){ // 만약 첨부파일 존재 시 첨부파일 추가
+                formDate.append('uploadfile' , profile);
+            }
+
             // 3) axios 에서 사용할 HTTP 헤더 정보 변수 선언
             const option = {headers : {"Content-Type" : "multipart/form-data"}};
 
@@ -84,6 +121,12 @@ export default function Signup(props){
                     <br/>
                     {/* accept="image/*" : 이미지만 받기 */}
                     <input type="file" accept="image/*" onChange={onFileChange}/> 
+                    <br/>
+                
+                    {/* 미리보기 파일이 존재하면 미리보기(preview) 출력*/}
+                    {/* 단축평가 : 전자가 true 면 뒤에 실행*/}
+                    {preview && (<><img src={preview} style={{width : "100px"}}/></>)}
+
                     <br/>
                     <button type="button" onClick={onSignup}> 회원가입 </button>
                 </form>
