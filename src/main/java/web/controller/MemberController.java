@@ -27,7 +27,8 @@ public class MemberController {
 
     // [1] 회원가입 (첨부파일X)
     @PostMapping("/signup")
-    public boolean signup(@RequestBody MemberDto memberDto){
+    public boolean signup(MemberDto memberDto){ // 프로필 이미지를 요청받기 위해 Content-Type 을 multipart/form-data 로 받음
+                // "multipart/form-data" 타입으로 요청을 받을 때는 @RequestBody 생략 => @ModelAttribute 자동 적용
         System.out.println("MemberController.signup");
         System.out.println("memberDto = " + memberDto);
 
