@@ -14,7 +14,7 @@ public class FileController {
     private final FileService fileService;
 
     // 일반적으로 Spring 은 업로드 용량 제한을 10MB 로 지정됨 //
-    // 용량 제한 해제 방법 : application.properties ([5]번) --->
+    // 용량 제한 설정 방법 : application.properties 에서 설정 ([5]번)
     // [1] 파일 업로드
     @PostMapping("/upload")
     // ★ 테스트 시 MultipartFile 타입의 매개변수명이랑 동일하게 지정
