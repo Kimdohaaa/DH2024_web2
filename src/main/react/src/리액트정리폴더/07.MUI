@@ -1,0 +1,21 @@
+[MUI]
+-> 정의 : 리액트.JS 기반의 미리 만들어진 컴포넌트를 제공하는 회사명
+-> 부트스트랩과 비슷
+
+1. MUI 에서 제공하는 컴포넌트 파트
+    1) Material UI
+    2) JOY UI
+    3) MUI X
+    4) TOOLPAD
+2. MUI 설치
+    1) 컴포넌트 설치
+    npm install @mui/material @emotion/react @emotion/styled
+    2) CSS 설치
+    npm install @mui/material @mui/styled-engine-sc styled-components
+    3) 아이콘 설치
+    npm install @mui/icons-material
+    4) JOy UI 설치
+    npm install @mui/joy @emotion/react @emotion/styled
+    5) Chart 설치
+    
+3. MUI 사용 : Material UI 페이지 에서 사용하고 싶은 컴포넌트 코드 가져오기
