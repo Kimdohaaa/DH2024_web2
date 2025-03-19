@@ -1,8 +1,15 @@
 import { useState } from "react"
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
+import {useDispatch} from 'react-redux' // useDispatch import
+import { login } from "../reduxs/userSlice"  // Slice 의 login 리듀서 함수 import
+
 
 export default function Login(props){
+
+    // [*] 리덕스 (전역변수) 사용하기
+    // *-1) 리덕스를 사용하기 위한 useDispatch() 변수 선언
+    const dispatch = useDispatch();
 
     // [0] 페이지 전환을 위한 useNavigate() 변수 선언
     const navigate = useNavigate();
@@ -21,13 +28,22 @@ export default function Login(props){
     // [3] 서버로 입력받은 값 전달
     const onLogin = async () => {
         try{
-            const response = await axios.post("http://localhost:8080/api/member/login", memberInfo)
+            const response = await axios.post("http://localhost:8080/api/member/login"
+                , memberInfo, {withCredentials : true}) 
+                    // 서버와 도메인이 다르기 때문에 {withCredentials : true} 를 통해 세션 허용
             console.log(response.data)
 
             if(response.data){
+                // 로그인 성공 시 회원정보 가져오기
+                const response2 = await axios.get("http://localhost:8080/api/member/info", {withCredentials : true})
+
                 alert("로그인 성공")
                 setMemberInfo({mid : "", mpwd : ""}) // input 초기화
-                navigate('/') // 로그인 성공 시 페이지 전환
+                navigate('/') // 로그인 성공 시 페이지 전환 // 기존 방식
+
+                // *-2) useDispatch() 함수를 이용한 리듀서 함수 action(호출)
+                dispatch(login(response2.data)); // 로그인 정보를 매개변수로 보내 전역으로 저장하여 사용
+
             }else{
                 alert("로그인 실패")
                 setMemberInfo({mid : "", mpwd : ""}) // input 초기화

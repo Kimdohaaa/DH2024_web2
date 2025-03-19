@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit' // 리덕스에서 제공하는 리듀서 등록 함수
-import { userReducer } from './userSlice.jsx' // userSlice.jsx 에서 리듀서 가져오기
+import  userReducer from './userSlice.jsx' // userSlice.jsx 에서 리듀서 가져오기
 
 // Store : 리듀서 등록
 

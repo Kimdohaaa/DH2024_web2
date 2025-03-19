@@ -31,5 +31,6 @@ const userSlice = createSlice( {
 })
 
 // [3] Store 에서 import 하여 사용하기 위해 export
-export const [login, logout] = userSlice.actions; // 액션 생성
-export default userSlice.reducer; // 리듀서 내보기기
+export const {login, logout} = userSlice.actions; // 액션 생성
+export default userSlice.reducer;
+
