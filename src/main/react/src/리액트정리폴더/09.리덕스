@@ -30,7 +30,28 @@
 3. Action  : 상태를 변경하는 함수
 4. Reducer : Action 을 받아서 상태를 처리하는 함수
 
+
+[리덕스 핵심함수]
+- redux 의 핵심함수
+    1) Provider      : 리덕스 Store 을 다른 컴포넌트들에게 공급 (라우터 or main.jsx 에서 적용)
+    ★ import {Provider} from 'react-redux' => toolkit 이 아닌 redux 에서 제공 ★
+        - <Provider store={스토어명}> 전역변수를 사용할 컴포넌트들 </Provider>
+    2) useDispatch() : 리덕스에서 액션(함수호출)을 보내는 함수
+        - dispatch(리듀서에서 정의한 함수명 (매개변수로 보낼 값))
+    3) useSelector() : 리덕스에서 상태(전역변수)를 조회 / 가져오는 함수
+        - useSelector( (state) => state.함수명.가져올속성명)
+
+- redux-toolkit 의 핵심함수
+    1) configureStore() : 여러개 의 리듀서를 저장하고 관리하기 위한 설정 함수
+    ★ import {configureStore} from '@reduxjs/toolkit' ★
+        - configureStore({reducer : {key1(리듀서등록명) : 등록할 리듀서1, key2(리듀서등록명) : 등록할 리듀서2}})
+    2) createSlice()    : 하나의 상태 또는 리듀서를 만들기 위한 설정 함수
+    ★ import { createSlice } from "@reduxjs/toolkit"; ★
+        - createSlice({ name : 이름,  초기값} , reducer : {함수명 : (state , action) => {처리할 코드}}) 
+
+
 [리덕스 사용]
+    ******************************* 리덕스 세팅 단계 *******************************
     1) 설치
         - Redux
         - Redux Tookit (Redux 업그레이드 버전) : npm install @reduxjs/toolkit
@@ -88,3 +109,21 @@
     
     5) 다른 컴포넌트에서 사용할 수 있도록 Store 을 export 로 내보내기
         형식 : export default 스토어명;
+
+
+    ******************************* 리덕스 사용 단계 ******************************* 
+    6) <Provider 스토어key명 = {스토어명}> </Provider> 을 통해 전역상태를 사용할 모든 컴포넌트를 감쌈
+    ★ Provider 적용 : import {Provider} from '@reduxjs/toolkit' ★
+
+    7) 전역 상태를 사용할 파일에서 리더스 사용하기
+        1_ 리덕스를 사용하기 위한 useDispatch() 변수 선언
+        ★ useDispatch 적용 : import {useDispatch} from '@reduxjs/toolkit' ★
+            형식 : const dispatch변수명 = useDispatch();
+
+        2_ 서버에서 응답받은 데이터를 리덕스의 전역변수에 대입하기 
+        ★ 리듀서 함수 적용 : import { 리듀서 함수 명 } from "리듀서 함수 경로" ★
+            형식 : dispatch(login(전역으로 저장할 데이터)); // useDispatch() 변수를 통해 리듀서 함수 action(호출)
+                                                          // 전역으로 사용할 데이털르 매개변수로 보내 저장하기
+        3_ 리덕스 전역변수로 저장된 값 useSelector() 함수를 통해 불러오기
+        ★ useSelector 적용 : import {useSelector} from '@reduxjs/toolkit' ★
+         형식 : const 변수명 = useSelector((state) =>  state.user.userInfo); // 'user' 라는 이름의 리듀서의 userInfo 가져오기
