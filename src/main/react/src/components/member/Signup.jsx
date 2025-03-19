@@ -124,7 +124,7 @@ export default function Signup(props){
                     <br/>
                 
                     {/* 미리보기 파일이 존재하면 미리보기(preview) 출력*/}
-                    {/* 단축평가 : 전자가 true 면 뒤에 실행*/}
+                    {/* 단축평가 : 전자가 true 면 뒤에 (<></>) 실행*/}
                     {preview && (<><img src={preview} style={{width : "100px"}}/></>)}
 
                     <br/>
