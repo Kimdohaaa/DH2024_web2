@@ -1,0 +1,90 @@
+1. 컴포넌트 안에서 자료를 저장하는 방법
+    1) useState : 컴포넌트 내부에서 사용 => 다른 컴포넌트와 공유 시 props 를 이용해야함 
+
+2. 서로 다른 컴포넌트 간의 자료를 이동하는 방법
+    1) props(Properties) : 부모 컴포넌트 -> 자식 컴포넌트로 속성을 key, value 로 전달
+        => <컴포넌트 key={value}/>          : 자식 컴포넌트에게 자료 전달
+        => <컴포넌트 onState = {setState}/> : 자식 컴포넌트에게 함수 전달
+    2) LocalStorage / SessionStorage 를 통해 전달 : 브라우저 저장소를 이용하여 자료 전달
+        - LocalStorage   : 브라우저 종료 시 사라지지 않음
+        - SessionStorage : 브라우저 종료 시 사라짐
+
+[리덕스(Redux)]
+- 리액트 방식의 자료 전달의 복잡도를 줄이기 위해 전역으로 상태를 관리하는 라이브러리
+- 서로 다른 컴포넌트 간의 효율적인 상태 공유를 제공
+- 목적 : state 상태를 저장하는 store 저장소를 만들고 서로 다른 컴포넌트간의 일관적인 state 를 유지하기 위함
+- 활용처 
+    1) 로그인 상태 (로그인 후 글쓰기 / 제품 등록 등의 기능 로직을 작성 시마다 로그인 상태를 확인하지 않아도 됨)
+    2) 권한 (권한에 따라 기능을 허용 또는 차단 시 마다 권한을 확인하지 않아도 됨)
+    ★ 제품 정보 / 게시물 정보 등 데이터가 많은 기능에는 사용하지 않음 ★
+    ~~~ 등등 ~~~
+- 활용상황
+    1) 전역 상태 관리가 필요할 경우
+    2) 여러 개의 컴포넌트에서 동일한 상태를 공유할 때
+    3) 컴포넌트 간의 props 전달이 복잡해질 때
+
+
+[리덕스 핵심개념]
+1. Store   : 상태를 저장하는 메모리 / 공간 (=저장소)
+2. Slice   : 상태와 Reducer를 한번에 정의하는 곳
+3. Action  : 상태를 변경하는 함수
+4. Reducer : Action 을 받아서 상태를 처리하는 함수
+
+[리덕스 사용]
+    1) 설치
+        - Redux
+        - Redux Tookit (Redux 업그레이드 버전) : npm install @reduxjs/toolkit
+
+    2) 전역 state 를 저장할 Store.jsx 생성 
+    (강의기준 : /main/src/components/reduxs/store.jsx )
+        1_리덕스 스토어 변수 생성
+        2_configureStore() 함수로 리듀서 정의, 등록
+            
+        형식 : export const 스토어명 = configureStore({reducer :{리듀서명 : 등록할 리듀서1, 리듀서명2 : 등록할 리듀서2}})
+        ★ !!! configureStore() 함수 import 필수 !!! ★
+
+    3) 상태와 리듀서를 정의할 Slice.jsx 생성 => Stroe 에서 사용
+    (강의기준 : /main/src/components/reduxs/userSlice.jsx )
+        1_ 전역 상태(변수) 로 사용할 데이터 초기값 정의
+            <예시>
+            const initialState = {
+                userInfo : null ,       // 로그인한 정보를 저장할 속성 생성
+                isAuthenticated : false // 인증 여부를 저장할 속성(로그인 여부) 생성
+                                        // 초기값 false (비로그인) 으로 선언
+            }
+
+        2_ createSlice() 함수를 이용하여 상태와 리듀서 생성
+            <예시>
+            const 리듀서명 = createSlice( {
+                name : ''user', // 상태이름 지정
+                initialState,  // 상태의 초기값 지정(false)
+                reducers : {   // 실제 상태를 처리하는 함수 (Slice 는 정의하는 곳) => 형식 : reducers : {함수명 : 처리함수}
+                    
+                    // 1) 로그인 리듀서
+                    login : (state, action) => {
+                        state.isAuthenticated = true ; // 로그인 성공 시 인증 상태 속성을 true 로 바꿈
+                        state.userInfo = action.payload; // 로그인 함수 action(호출) 시 payload(매개변수로 받은 값)를 state 에 저장
+                    }, 
+                    
+                    // 2) 로그아웃 리듀서
+                    logout : (state) => {
+                        state.isAuthenticated = false; // 로그아웃 시 인증 상태 속성을 false 로 변경
+                        state.userInfo = null // 로그아웃 함수 action(호출) 시 payload(매개변수로 받은 값)를 null 로 변경
+                    } 
+
+                }
+            })
+
+        3_ Stroe 에서 리듀서를 import 하여 사용하기 위해 export 로 내보기
+            - 액션생성
+                형식 : export const [리듀서함수명 1, 리듀서함수명2] = 리듀서명.actions;
+            - 리듀서 내보내기
+                형식 : export default 리듀서 명.reducer
+
+        ★ !!! createSlice() 함수 import 필수 !!! ★
+
+    4) Store 에서 import 로 Slice 의 리듀서를 가져오기
+        형식 : import { 가져올 리듀서 명 } from '리듀서가 정의된 Slice 파일 경로'
+    
+    5) 다른 컴포넌트에서 사용할 수 있도록 Store 을 export 로 내보내기
+        형식 : export default 스토어명;
