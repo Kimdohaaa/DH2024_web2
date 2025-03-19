@@ -92,7 +92,7 @@ export default function Signup(props){
             if(result == true){
                 alert("회원가입 성공")
                 // 7) 회원가입 성공 시 로그인 페이지로 이동
-                navigate("/login") // navigate() 사용 시 새로고침 없이 이동 가능
+                navigate('/member/login') // navigate() 사용 시 새로고침 없이 이동 가능
                                    // location.href 사용 시 새로고침 됨 
             }else{
                 alert("회원가입 실패")
