@@ -1,0 +1,35 @@
+[CORS (Cross-Origin-Resource-Sharing)]
+1. 정의 : 서로 다른 도메인의 요청과 응답을 허용하는 정책
+2. 브라우저는 보안상의 이유로 CORS 를 차단함 (=> SOP(Same-Origin-Policy) : 동일한 도메인끼리만 통신 가능)
+3. 해결방법
+- 개발 단계 : 리액트와 스프링의 포트 번호가 다름 
+    
+    <스프링에서의 CROS 허용>
+    1) 어노테이션을 통해 도메인 허용 
+        Controller 클래스에 @CrosOrigin("허용할도메인") 
+
+    2) 도메인 허용 클래스를 사용
+        // ★★★ 리액트와 통신 시 CORS 를 허용하기 위한 클래스 ★★★ //
+        @Configuration // 빈 등록
+        // WebMvcConfigurer 인터페이스를 implements
+        // => WebMvcConfigurer : Spring MVC 관련 설정값을 수정하는 인터페이스
+        public class CorsConfig implements WebMvcConfigurer {
+            // CORS 관련 설정값 오버라이딩를 통해 수정
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**") // 모든 스프링 컨토롤러의 HTTP 매핑에 허용
+                        .allowedOrigins("http://localhost:5181") // 허용할 도메인(여러개 허용 가능 -> 쉼표로 구분)
+                        .allowedMethods("GET", "POST", "PUT", "DELETE") // 허용할 HTTP 메소드
+                        .allowedHeaders("*") // 허용할 HTTP Headers
+                        .allowCredentials(true); // HTTP 의 쿠키 , 인증 허용 => 세션 사용을 위해 지정
+            }
+        }
+
+    <리액트에서의 CROS 허용>
+    ★ 주의점 : axios / fetch 를 사용 시 쿠키, 세션 유지 불가 ★
+    ★ 인증절차의 경우 보안이 중요하기 때문에 리액트의 SPA 방식을 사용하지 않고 서버에 맡기는 경우가 많음 ★
+    => 쿠키, 세션 을 사용하는 REST API(서버요청) 에 대해 Credentials = true 를 통해 허용해줌
+
+- 배포 단계 
+    1) 서버를 2개로 그대로 운영
+    2) 리액트 결과(정적파일)를 스프링에서 통합 / 관리하여 운영
