@@ -127,3 +127,38 @@
         3_ 리덕스 전역변수로 저장된 값 useSelector() 함수를 통해 불러오기
         ★ useSelector 적용 : import {useSelector} from '@reduxjs/toolkit' ★
          형식 : const 변수명 = useSelector((state) =>  state.user.userInfo); // 'user' 라는 이름의 리듀서의 userInfo 가져오기
+
+
+[리덕스 퍼시스턴스]
+- 리덕스의 전역 상태는 리렌더링 시 초기화되어 사라짐 -> 리덕스 퍼시스턴스를 사용해 localStorage 에 상태 유지 
+1. 설치 : npm install redux-persist
+2. 사용 
+    1) store.jsx 에서 퍼시스턴스 설정하기
+        1_ import
+        // 리덕스 퍼시스턴스 함수 가져오기
+        import {persistStore, persistReducer} from 'redux-persist'
+        // 브라우저의 로컬 스토리지 가져오기 
+        import storage from 'redux-persist/lib/storage' 
+
+        2_ 퍼시스턴스 설정
+        const 변수명 = {storage , key : "localStorage 에 저장할 키 이름"}
+        
+        3_ 퍼시스턴스에 적용할 리듀서 설정
+        const 변수명 = persistReducer(퍼시스턴스 설정 변수명, 설정을 적용할 리듀서명) 
+
+        4_ 퍼시스턴스가 적용된 스토어 변수 생성
+        export const store = configureStore ({ 리듀서명 : 등록할 리듀서})
+
+        5_ 퍼시스턴스가 적용된 Store 내보내기
+        export const 변수명 = persistStore (퍼시스턴스가 적용된 store)
+    
+    2) 퍼시스턴스를 적용할 컴포넌트 지정
+        1_ import
+        import {store, persistor} from'./reduxs/store.jsx'
+        import {PersistGate} from 'redux-persist/integration/react'
+
+        2_ 적용할 컴포넌트 감싸기
+        <PersistGate persistor={퍼시스턴스명} loading={null}>
+            퍼시스턴스를 적용할 컴포넌트 
+        </PersistGate>
+        
