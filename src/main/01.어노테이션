@@ -200,6 +200,7 @@
 
 3. @Service : @Component 어노테이션 포함된 어노테이션
 
+4. @Builder : lombok 에서 제공하는 빌더 패턴 어노테이션으로 생성자 없이 builder pattern 을 통해 객체 생성 가능
 
 [상수]
 1. final : 필드 / 변수가 초기화 이후 변경 불가한 상태로 지정하는 키워드
