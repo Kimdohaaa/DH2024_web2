@@ -52,10 +52,7 @@ public class Task {
         Scanner scan = new Scanner(System.in);
 
 
-        boolean state = false;
         Music music = new Music();
-
-
         Web web = new Web();
 
         System.out.println(" 1. 뮤직 ON/OFF | 2. 웹서핑 ON/OFF  0. 종료");
