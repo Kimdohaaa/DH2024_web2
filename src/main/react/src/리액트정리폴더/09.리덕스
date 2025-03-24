@@ -53,7 +53,7 @@
 [리덕스 사용]
     ******************************* 리덕스 세팅 단계 *******************************
     1) 설치
-        - Redux
+        - Redux : npm install redux-persist
         - Redux Tookit (Redux 업그레이드 버전) : npm install @reduxjs/toolkit
 
     2) 전역 state 를 저장할 Store.jsx 생성 
