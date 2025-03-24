@@ -19,7 +19,7 @@ class Music extends  Thread{
                 } else {
                     break;                  }
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -42,7 +42,7 @@ class  Web extends Thread{
                     break;
                 }
             }
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
