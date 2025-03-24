@@ -5,8 +5,7 @@ import lombok.Setter;
 
 import java.util.Scanner;
 
-@Setter
-@Getter
+
 class Music extends  Thread{
 
     boolean musicsState = false;
@@ -26,8 +25,7 @@ class Music extends  Thread{
     }
 }
 
-@Setter
-@Getter
+
 class  Web extends Thread{
 
     boolean webState = false;
