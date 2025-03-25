@@ -6,7 +6,7 @@
     3) 특정 시간에 자동 업무처리
     등등~~~
 - 사용법
-    1) AppStart 클래스에 @EnableAsync 어노테이션 주입하여 스케쥴링 기능 활성화
+    1) AppStart 클래스에 @EnableScheduling  어노테이션 주입하여 스케쥴링 기능 활성화
     2) 스케쥴링을 적용할 메소드에 @Scheduled(패턴) 어노테이션 주입
 - 주의점 : REST API response 불가 (백에서 처리되기 때문에 스케쥴링 값을 response 불가)
     -> 일반적으로 response 가 필요할 경우 소켓을 통해 전달
