@@ -22,10 +22,10 @@ public class TaskService {
         taskMapper.task1();
     }
 
-    // [2] 매 1분마다 모든 제품정볼르 조회하여 console에 출력
+    // [2] 매 1분마다 모든 제품정보를 조회하여 console에 출력
     @Scheduled(cron = "0 */1 * * * * ")
     public void task2(){
-        System.out.println("매 1분마다 모든 제품정볼르 조회하여 console에 출력");
+        System.out.println("매 1분마다 모든 제품정보를 조회하여 console에 출력");
 
         List<HashMap<String, String>> result = taskMapper.task2();
 
