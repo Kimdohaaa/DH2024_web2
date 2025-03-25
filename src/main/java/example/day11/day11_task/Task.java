@@ -17,7 +17,8 @@ class Music extends  Thread{
                     System.out.println("음악 재생 중...");
                     Thread.sleep(1000);
                 } else {
-                    break;                  }
+                    break;
+                }
             }
         } catch (Exception e) {
             System.out.println(e);
