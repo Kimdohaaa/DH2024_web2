@@ -19,3 +19,15 @@ INSERT INTO student_score (sno, subject, score) VALUES (2, '국어', 78);
 INSERT INTO student_score (sno, subject, score) VALUES (2, '수학', 92);
 
 -- ---------------------- ------ ---------------------------------- --
+
+-------------------------- day12 스케쥴링과제 -----------------------
+ INSERT INTO day11products (product_name, stock_quantity) VALUES
+        ('무선 이어폰', 25),
+        ('스마트워치', 12),
+        ('게이밍 키보드', 30),
+        ('기계식 마우스', 8),
+        ('휴대용 충전기', 15);
+-------------------------- day13 트랜잭션 -----------------------
+INSERT INTO day13users (name, money) VALUES
+('서장훈', 500000),
+('신동엽', 300000);

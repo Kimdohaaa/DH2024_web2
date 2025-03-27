@@ -30,6 +30,7 @@
 => @Transactional : 트렌잭션을 적용 시키는 어노테이션
     - 발생조건 : RuntimeException
     - 해당 어노테이션을 주입한 SQL 에서 RuntimeException 발생 시 모두 rollback 됨
+=> @Transactional(rollbackFor = Exception.class) 로 설정할 시 모든 예외클래스에 대한 롤백 가능
 
 
 
