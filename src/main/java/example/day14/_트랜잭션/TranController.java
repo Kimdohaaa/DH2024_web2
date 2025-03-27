@@ -1,4 +1,4 @@
-package example.day14;
+package example.day14._트랜잭션;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,4 +35,6 @@ public class TranController {
             return  false;
         }
     }
+
+
 }

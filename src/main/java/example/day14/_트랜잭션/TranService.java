@@ -1,6 +1,7 @@
-package example.day14;
+package example.day14._트랜잭션;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,5 +59,17 @@ public class TranService {
 
 
         return  true;
+    }
+
+    // [3] 매일 9시 회원들에게 100원씩 입급
+    @Scheduled(cron = "0 */1 * * * *") // 매일 9시 스케쥴링
+    @Transactional(rollbackFor = Exception.class) // 해당하는 메소드에서 예외 발생 시 모든 SQL 취소, 롤백
+    public void Task() throws  Exception{ // 예외 던지기
+        // 1) 모든 회원 목록
+        tranMapper.findAll() // 모든 회원목록 조회
+                .stream()    // 조회 결과 스트림 생성
+                .forEach((name) -> tranMapper.deposit(name, 100)); // 스트림의 회원들에게 100원씩 입금
+
+        System.out.println(">> 모든 회원들에게 100원씩 입금 처리 완료");
     }
 }
