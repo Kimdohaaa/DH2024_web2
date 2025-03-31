@@ -5,6 +5,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -66,10 +67,28 @@ public class TranService {
     @Transactional(rollbackFor = Exception.class) // 해당하는 메소드에서 예외 발생 시 모든 SQL 취소, 롤백
     public void Task() throws  Exception{ // 예외 던지기
         // 1) 모든 회원 목록
+
+        // 스트림, 람다식, 레퍼런스 적용 버전 //
         tranMapper.findAll() // 모든 회원목록 조회
                 .stream()    // 조회 결과 스트림 생성
-                .forEach((name) -> tranMapper.deposit(name, 100)); // 스트림의 회원들에게 100원씩 입금
+                // .forEach((name) -> tranMapper.deposit(name, 100)); // 스트림의 회원들에게 100원씩 입금
+                .filter(name -> !name.equals("유재석")) // 조건
+                .forEach(this::depositAll); // 메소드 레퍼런스 적용 | this : 현재 스트립에서 각 데이터의 이름
+
+        // 일반적인 방법 //
+        List<String> names = tranMapper.findAll(); // 모든 회원목록 조회
+        for(int i = 0; i <= names.size(); i++){ // 조회한 회원목록 순회
+            String name = names.get(i); // 각 회원의 이름 가져오기
+            if(!name.equals("유재석")) continue; // 조건
+            tranMapper.deposit(name, 100); // 입금 처리
+        }
 
         System.out.println(">> 모든 회원들에게 100원씩 입금 처리 완료");
+
+    }
+
+    // [4] 메소드 레퍼런스 적용을 위한 메소드 선언
+    private void depositAll(String name){
+        tranMapper.deposit(name, 100);
     }
 }
